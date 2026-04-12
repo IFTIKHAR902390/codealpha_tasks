@@ -10,28 +10,33 @@ db = mysql.connector.connect(
     database="codealpha"
 )
 
-@app.route("/", methods=["GET","POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
 
-    message=""
+    message = ""
+
+    cursor = db.cursor()
 
     if request.method == "POST":
 
-        name=request.form["name"]
-        email=request.form["email"]
+        name = request.form["name"]
+        email = request.form["email"]
 
-        cursor=db.cursor()
+        # Check if user already exists
+        cursor.execute("SELECT * FROM users WHERE email=%s", (email,))
+        existing_user = cursor.fetchone()
 
-        cursor.execute("SELECT * FROM users WHERE email=%s",(email,))
-        result=cursor.fetchone()
-
-        if result:
-            message="Duplicate data detected!"
+        if existing_user:
+            message = "User already exists!"
         else:
-            cursor.execute("INSERT INTO users(name,email) VALUES(%s,%s)",(name,email))
+            cursor.execute(
+                "INSERT INTO users (name, email) VALUES (%s, %s)",
+                (name, email)
+            )
             db.commit()
-            message="User added successfully"
+            message = "User added successfully!"
 
-    return render_template("index.html",message=message)
+    return render_template("index.html", message=message)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
