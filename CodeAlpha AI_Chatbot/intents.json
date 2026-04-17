@@ -1,0 +1,50 @@
+{
+ "intents":[
+
+  {
+   "tag":"greeting",
+   "patterns":[
+   "hello","hi","hey","good morning","good evening"
+   ],
+   "responses":[
+   "Hello! How can I help you?",
+   "Hi there!",
+   "Hey! What can I do for you?"
+   ]
+  },
+
+  {
+   "tag":"name",
+   "patterns":[
+   "what is your name",
+   "who are you"
+   ],
+   "responses":[
+   "I am CodeAlpha AI chatbot."
+   ]
+  },
+
+  {
+   "tag":"help",
+   "patterns":[
+   "help me",
+   "i need help",
+   "can you help"
+   ],
+   "responses":[
+   "Sure! Tell me your question."
+   ]
+  },
+
+  {
+   "tag":"bye",
+   "patterns":[
+   "bye","goodbye","see you later"
+   ],
+   "responses":[
+   "Goodbye! Have a great day."
+   ]
+  }
+
+ ]
+}
