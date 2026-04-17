@@ -1,1 +1,2 @@
-CodeApha Data_Redundancy
+CodeAlpha Data_Redundancy
+CodeAlpha AI_Chatbot
